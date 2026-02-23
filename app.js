@@ -83,7 +83,7 @@ const sessionOptions = {
     },
 };
 
-
+app.set("trust proxy", 1);
 //sessions
 app.use(session(sessionOptions));
 //flash
