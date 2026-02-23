@@ -1,0 +1,217 @@
+<% layout("../layouts/boilerplate.ejs") -%>
+
+<style>
+  .listing-page {
+    background-color: #f7f7f7;
+    min-height: calc(100vh - 120px);
+    display: flex;
+    justify-content: center;
+    padding: 40px 20px;
+  }
+
+  .form-container {
+    background: #ffffff;
+    width: 100%;
+    max-width: 900px;
+    padding: 40px 50px;
+    border-radius: 16px;
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.08);
+  }
+
+  .form-container h3 {
+    font-size: 26px;
+    font-weight: 600;
+    margin-bottom: 30px;
+    color: #222;
+  }
+
+  .form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  .form-group.full {
+    grid-column: span 2;
+  }
+
+  /* Use Bootstrap form-control but keep your design */
+  .form-control {
+    padding: 14px 16px;
+    font-size: 15px;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+  }
+
+  textarea.form-control {
+    resize: none;
+    height: 120px;
+  }
+
+  .form-control:focus {
+    border-color: #ff385c;
+    box-shadow: none;
+    outline: none;
+  }
+
+  /* Bootstrap validation visibility */
+  .was-validated .form-control:invalid {
+    border-color: #dc3545;
+  }
+
+  .was-validated .form-control:valid {
+    border-color: #198754;
+  }
+
+  .submit-btn {
+    margin-top: 30px;
+    width: 100%;
+    padding: 16px;
+    background-color: #ff385c;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 17px;
+    font-weight: 600;
+    cursor: pointer;
+  }
+
+  .submit-btn:hover {
+    background-color: #e31c5f;
+  }
+
+  @media (max-width: 768px) {
+    .form-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .form-group.full {
+      grid-column: span 1;
+    }
+  }
+</style>
+
+<div class="listing-page">
+  <div class="form-container">
+    <h3>Create New Listing</h3>
+
+    <form action="/listings" method="POST" novalidate class="needs-validation" enctype="multipart/form-data">
+      <div class="form-grid">
+
+        <!-- Title -->
+        <div class="form-group full">
+          <label for="title" class="mb-1 fw-medium">Listing Title</label>
+          <input
+            id="title"
+            class="form-control"
+            type="text"
+            name="listing[title]"
+            placeholder="Listing title"
+            required
+          />
+          <div class="valid-feedback">Title looks good.</div>
+          <div class="invalid-feedback">Listing title is required.</div>
+        </div>
+
+        <!-- Description -->
+        <div class="form-group full">
+          <label for="description" class="mb-1 fw-medium">Description</label>
+          <textarea
+            id="description"
+            class="form-control"
+            name="listing[description]"
+            placeholder="Describe your place"
+            required
+          ></textarea>
+          <div class="valid-feedback">Description looks good.</div>
+          <div class="invalid-feedback">Description is required.</div>
+        </div>
+
+        <!-- Price -->
+        <div class="form-group">
+          <label for="price" class="mb-1 fw-medium">Price per Night</label>
+          <input
+            id="price"
+            class="form-control"
+            type="number"
+            name="listing[price]"
+            placeholder="Price per night"
+            required
+            min="1"
+          />
+          <div class="valid-feedback">Price looks good.</div>
+          <div class="invalid-feedback">Enter a valid price.</div>
+        </div>
+
+        <!-- Location -->
+        <div class="form-group">
+          <label for="location" class="mb-1 fw-medium">City / Location</label>
+          <input
+            id="location"
+            class="form-control"
+            type="text"
+            name="listing[location]"
+            placeholder="City / Location"
+            required
+          />
+          <div class="invalid-feedback">Location is required.</div>
+        </div>
+
+        <!-- Country -->
+        <div class="form-group">
+          <label for="country" class="mb-1 fw-medium">Country</label>
+          <input
+            id="country"
+            class="form-control"
+            type="text"
+            name="listing[country]"
+            placeholder="Country"
+            required
+          />
+          <div class="invalid-feedback">Country is required.</div>
+        </div>
+
+        
+
+        <!-- Image File -->
+        <div class="form-group">
+          <label for="imageFile" class="mb-1 fw-medium">Upload Image</label>
+          <input
+            id="imageFile"
+            class="form-control"
+            type="file"
+            name="image"
+          />
+          <div class="invalid-feedback">Please upload a valid image.</div>
+        </div>
+      </div>
+
+
+
+      <!-- Category -->
+<div class="form-group">
+  <label for="category" class="mb-1 fw-medium">Category</label>
+  <select
+    id="category"
+    class="form-control"
+    name="listing[category]"
+    required
+  >
+    <option value="" disabled selected>Select category</option>
+    <option value="budget">Budget</option>
+    <option value="trending">Trending</option>
+    <option value="luxury">Luxury</option>
+    <option value="beach">Beach</option>
+    <option value="mountains">Mountains</option>
+  </select>
+  <div class="invalid-feedback">Category is required.</div>
+</div>
+
+
+      <button class="submit-btn">Add Listing</button>
+
+
+      
+    </form>
+  </div>
+</div>

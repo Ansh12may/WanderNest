@@ -1,0 +1,135 @@
+<% layout("../layouts/boilerplate.ejs") -%>
+
+<style>
+    .auth-wrapper {
+        min-height: calc(100vh - 120px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #f7f7f7;
+    }
+
+    .auth-card {
+        background: #ffffff;
+        width: 100%;
+        max-width: 420px;
+        border-radius: 20px;
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+        padding: 32px;
+    }
+
+    .auth-card h3 {
+        font-weight: 600;
+        margin-bottom: 24px;
+        text-align: center;
+    }
+
+    .auth-input {
+        border-radius: 12px;
+        padding: 12px 14px;
+        font-size: 15px;
+    }
+
+    .auth-btn {
+        background: linear-gradient(90deg, #ff385c, #e61e4d);
+        border: none;
+        border-radius: 12px;
+        padding: 12px;
+        font-weight: 600;
+        color: #fff;
+    }
+
+    .auth-btn:hover {
+        opacity: 0.95;
+    }
+
+    .divider {
+        display: flex;
+        align-items: center;
+        text-align: center;
+        margin: 20px 0;
+        color: #717171;
+        font-size: 14px;
+    }
+
+    .divider::before,
+    .divider::after {
+        content: "";
+        flex: 1;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .divider:not(:empty)::before {
+        margin-right: 10px;
+    }
+
+    .divider:not(:empty)::after {
+        margin-left: 10px;
+    }
+
+    .auth-footer {
+        text-align: center;
+        font-size: 14px;
+        margin-top: 18px;
+    }
+
+    .auth-footer a {
+        font-weight: 600;
+        text-decoration: none;
+    }
+
+
+    .google-btn {
+  display: block;
+  margin-top: 12px;
+  padding: 12px;
+  text-align: center;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  text-decoration: none;
+  color: #333;
+}
+</style>
+
+<div class="auth-wrapper">
+    <div class="auth-card">
+        <h3>Welcome to WanderNest</h3>
+
+        <form action="/auth/login" method="POST">
+
+            <div class="mb-3">
+                <input
+                    type="text"
+                    name="username"
+                    class="form-control auth-input"
+                    placeholder="Username"
+                    required
+                >
+            </div>
+
+            <div class="mb-3">
+                <input
+                    type="password"
+                    name="password"
+                    class="form-control auth-input"
+                    placeholder="Password"
+                    required
+                >
+            </div>
+
+            <button class="btn auth-btn w-100">
+                Login
+            </button>
+        </form>
+
+        <div class="divider">or</div>
+
+        <!-- Optional social buttons (UI only) -->
+       <a href="/auth/google" class="google-btn">
+        Continue with Google
+        </a>
+
+
+        
+    </div>
+</div>

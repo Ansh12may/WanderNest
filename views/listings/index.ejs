@@ -1,0 +1,108 @@
+<% layout("../layouts/boilerplate.ejs") -%>
+
+<h3 class="section-title">Explore stays</h3>
+
+
+<!-- Filters Bar -->
+<div class="filters-bar">
+  <div class="filters-left">
+
+  <a href="/listings?category=all"
+     class="filter-chip <%= category === 'all' ? 'active' : '' %>">
+    <i class="fa-solid fa-border-all"></i>
+    <span>All</span>
+  </a>
+
+  <a href="/listings?category=trending"
+     class="filter-chip <%= category === 'trending' ? 'active' : '' %>">
+    <i class="fa-solid fa-fire"></i>
+    <span>Trending</span>
+  </a>
+
+  <a href="/listings?category=budget"
+     class="filter-chip <%= category === 'budget' ? 'active' : '' %>">
+    <i class="fa-solid fa-wallet"></i>
+    <span>Budget</span>
+  </a>
+
+  <a href="/listings?category=luxury"
+     class="filter-chip <%= category === 'luxury' ? 'active' : '' %>">
+    <i class="fa-solid fa-gem"></i>
+    <span>Luxury</span>
+  </a>
+
+  <a href="/listings?category=beach"
+     class="filter-chip <%= category === 'beach' ? 'active' : '' %>">
+    <i class="fa-solid fa-umbrella-beach"></i>
+    <span>Beach</span>
+  </a>
+
+  <a href="/listings?category=mountains"
+     class="filter-chip <%= category === 'mountains' ? 'active' : '' %>">
+    <i class="fa-solid fa-mountain"></i>
+    <span>Mountains</span>
+  </a>
+
+</div>
+
+
+  <div class="filters-right">
+
+  <form method="GET" class="sort-form">
+    <!-- preserve category -->
+    <input type="hidden" name="category" value="<%= category || 'all' %>">
+
+    <!-- preserve search -->
+    <% if (q) { %>
+      <input type="hidden" name="q" value="<%= q %>">
+    <% } %>
+
+    <select
+      name="sort"
+      class="sort-select"
+      onchange="this.form.submit()"
+    >
+      <option value="">Filters</option>
+
+      <option value="price_asc"
+        <%= sort === 'price_asc' ? 'selected' : '' %>>
+        Price: Low → High
+      </option>
+
+      <option value="price_desc"
+        <%= sort === 'price_desc' ? 'selected' : '' %>>
+        Price: High → Low
+      </option>
+    </select>
+  </form>
+
+</div>
+
+
+
+
+<div class="row g-4">
+  <% for (let listing of allListings) { %>
+    <div class="col-lg-4 col-md-6 col-sm-12">
+      <div class="airbnb-card skeleton">
+
+        <a href="/listings/<%= listing._id %>" class="listing-link">
+
+          <div class="image-wrapper">
+            <img src="<%= listing.image.url %>" alt="listing image" loading="lazy">
+          </div>
+
+          <div class="card-info">
+            <h5><%= listing.title %></h5>
+
+            <p class="price">
+              ₹<%= listing.price.toLocaleString("en-IN") %>
+              <span>/ night</span>
+            </p>
+          </div>
+
+        </a>
+      </div>
+    </div>
+  <% } %>
+</div>

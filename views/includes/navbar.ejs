@@ -1,0 +1,67 @@
+<nav class="navbar navbar-expand-lg bg-white border-bottom sticky-top py-3">
+  <div class="container">
+
+    <!-- Brand -->
+    <a class="navbar-brand fw-bold text-danger" href="/listings">
+      WanderNest
+    </a>
+
+    <!-- Toggle -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+      data-bs-target="#navbarNav" aria-controls="navbarNav"
+      aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Center Search -->
+<div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+  <form
+    class="d-flex search-bar shadow-sm rounded-pill px-3 py-1"
+    action="/listings"
+    method="GET"
+  >
+    <input
+      class="form-control border-0"
+      type="search"
+      name="q"
+      placeholder="Search destinations"
+      aria-label="Search"
+      value="<%= typeof q !== 'undefined' ? q : '' %>"
+    >
+
+    <button class="btn btn-danger rounded-circle ms-2" type="submit">
+      <i class="bi bi-search"></i>
+    </button>
+  </form>
+</div>
+
+
+    <!-- Right Menu -->
+    <div class="d-flex align-items-center gap-3">
+      <a href="/listings/new" class="text-decoration-none text-dark fw-semibold">
+        Airbnb your home
+      </a>
+
+      <div class="dropdown">
+        <button class="btn border rounded-pill px-3" data-bs-toggle="dropdown">
+          <i class="bi bi-list"></i>
+          <i class="bi bi-person-circle ms-1"></i>
+        </button>
+        <ul class="dropdown-menu dropdown-menu-end">
+          <%if(!currentUser){%>
+          <li><a class="dropdown-item" href="/auth/login">Login</a></li>
+          <li><a class="dropdown-item" href="/auth/signup">Sign up</a></li>
+          <%}%>
+          <%if(currentUser){%>
+          <li><a class="dropdown-item" href="/auth/logout">Logout</a></li>
+          <%}%>
+
+         
+          <li><a class="dropdown-item" href="/bookings/my">My Trips</a></li>
+        
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</nav>
